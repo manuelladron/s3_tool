@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: ha-s3-tool
-Version: 0.1.0
+Version: 0.1.2
 Summary: A tool for uploading and downloading files and folders to/from S3.
 Home-page: https://github.com/manuelladron/s3_tool
 Author: Manuel Rodriguez Ladron de Guevara

@@ -1,16 +1,18 @@
 from setuptools import setup, find_packages
 from setuptools.command.install import install
 import subprocess
+import sys 
 
 class PostInstallCommand(install):
     """Post-installation for installation mode."""
     def run(self):
         install.run(self)
-        subprocess.call(['python', 'post_install.py'])
+        if 'install' in sys.argv:
+            subprocess.call([sys.executable, 'post_install.py'])
 
 setup(
     name="ha-s3-tool",
-    version="0.1.0",
+    version="0.1.2",
     packages=find_packages(),
     install_requires=[
         "boto3",
