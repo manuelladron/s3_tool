@@ -14,9 +14,13 @@ def load_aws_credentials():
     config.read(config_path)
     aws_credentials = config['default']
 
-    os.environ['AWS_ACCESS_KEY_ID'] = aws_credentials['AWS_ACCESS_KEY_ID']
-    os.environ['AWS_SECRET_ACCESS_KEY'] = aws_credentials['AWS_SECRET_ACCESS_KEY']
-    os.environ['AWS_REGION'] = aws_credentials['AWS_REGION']
+    os.environ['AWS_ACCESS_KEY_ID'] = aws_credentials.get('aws_access_key_id', '')
+    os.environ['AWS_SECRET_ACCESS_KEY'] = aws_credentials.get('aws_secret_access_key', '')
+    os.environ['AWS_REGION'] = aws_credentials.get('region', '')
+
+    if not os.environ['AWS_ACCESS_KEY_ID'] or not os.environ['AWS_SECRET_ACCESS_KEY'] or not os.environ['AWS_REGION']:
+        raise ValueError("AWS credentials are not set properly. Please run the installation script again.")
+
 
 def upload_file_to_s3(local_file_path, bucket_name, s3_file_path, region_name='us-east-1'):
     load_aws_credentials()
