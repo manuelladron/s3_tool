@@ -9,7 +9,7 @@ class PostInstallCommand(install):
         subprocess.call(['python', 'post_install.py'])
 
 setup(
-    name="s3_tool",
+    name="ha-s3-tool",
     version="0.1.0",
     packages=find_packages(),
     install_requires=[
